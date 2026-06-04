@@ -181,7 +181,6 @@ The proof-of-concept successfully demonstrated the feasibility of optical mosqui
 ## Future Improvements
 
 - Real mosquito testing and data acquisition
-- STM32-based signal processing platform
 - Automatic species classification
 - Wireless data transmission
 - Autonomous field-deployable mosquito monitoring system
