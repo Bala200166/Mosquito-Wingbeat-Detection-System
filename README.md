@@ -1,67 +1,195 @@
-# Mosquito-sensor
+# Mosquito Wingbeat Detection System Using Optical Sensing
 
-Prototype for mosquito detection using motor-simulated wing vibration, IR/ultrasonic sensors, and signal processing with MATLAB/Embedded C.
+Prototype for mosquito wingbeat detection using a pulsed UV optical sensing approach, analog signal processing, and frequency-based event detection.
+
+---
 
 ## Project Overview
-Mosquitoes spread diseases like dengue, malaria, and chikungunya. This project explores low-cost methods for **detecting mosquito presence and species identification** by analyzing wing vibrations.
 
-Two main approaches are studied:
-- **Light interaction**: Using IR/photoelectric sensors to capture wingbeat frequencies.
-- **Sound interaction**: Simulating mosquito wing sounds and analyzing them with signal processing.
-- The goal of this project is to explore **low-cost and low-power methods** to detect mosquitoes based on their flying characteristics (wing vibrations, optical reflections, ultrasonic interactions).  
-- This prototype focuses first on **light-based detection** before extending to ultrasonic simulations.
+Mosquitoes are vectors for diseases such as malaria, dengue fever, chikungunya, and Zika virus. This project investigates a low-cost optical sensing method for detecting mosquito wingbeat activity by measuring light interruptions caused by wing movement.
 
-## Objectives
-1. Control and vary motor speed to simulate mosquito wing frequencies (< 1000 Hz).
-2. Capture reflected light/signal from wings and body using different wavelengths.
-3. Analyze signals for species-specific characteristics.
-4. Explore ultrasonic simulation inspired by bat echolocation.
-5. Develop a low-cost, low-power prototype.
+The objective was to validate the feasibility of detecting mosquito wingbeat frequencies using UV optical sensing, signal conditioning circuits, and digital pulse generation techniques.
 
-## Approach & Methodology
+---
 
-### 1. Motor-Simulated Wing Vibration
-- A **small DC motor with attached wings** is used to simulate mosquito wing flapping.  
-- Speed is controlled via **power supply** or **potentiometer** (later with a microcontroller).  
-- An Oscilloscope used to verify that the sensor signal corresponds to the wing rotation speed.  
+## Key Objectives
 
-### 2. Optical Interaction (Light Sensors & LEDs)
-- Place a light sensor in front of the rotating wings to capture reflected signals.  
-- Initial test: use normal light and check if signal variations can be detected.  
-- Next step: use **two LEDs at different wavelengths**:
-  - One wavelength for mosquito body reflection.  
-  - Another wavelength for wing reflection.  
-- Goal: Differentiate body vs wing reflections → add information for species identification.  
+- Develop an optical sensing system for mosquito wingbeat detection.
+- Generate a pulsed UV light source for reliable measurements.
+- Detect wingbeat-induced optical interruptions using a phototransistor.
+- Design and simulate analog signal processing circuits.
+- Convert weak sensor signals into clean digital pulses.
+- Validate the concept through hardware proof-of-concept experiments.
 
-### 3. Ultrasonic Interaction (Future Work)
-- Initial step: simulate ultrasonic detection in MATLAB to test feasibility.
-- Implement microcontroller-based motor control and automated frequency analysis.
-- Extend detection using ultrasonic sensing for enhanced accuracy. 
+---
 
-## Current Progress(as of october 2025)
--  Built initial prototype: motor + potentiometer for speed control.  
--  Tested basic optical setup with sensor and an oscilloscope.  
--  Next: integrate dual-wavelength LED system.
+## System Architecture
 
-## 📸 Prototype Images
-(Back view):  
-![Test1](testimage1.jpg)
+### Optical Detection Chain
 
-Frontside wiring with motor and potentiometer:  
-![Test2](2ndtestimage.jpg)
+UV LED Emitter  
+→ Mosquito Wing Interruption  
+→ Phototransistor Receiver  
+→ Signal Conditioning Circuit  
+→ Comparator with Hysteresis  
+→ Digital Output
 
-## Hardware Components
-- DC motor with custom wing attachment (to simulate mosquito wing flapping)
-- Potentiometer (motor speed control)
-- IR emitter and photodiode / photoelectric sensor
-- Optional: Ultrasonic transducer
-- Breadboard / PCB prototype
-- Power supply (low voltage, low consumption)
+---
 
-## Software & Tools
-- **Embedded C** for microcontroller firmware
-- **MATLAB/Simulink** for signal processing & visualization
-- **TINA-TI** for analog circuit simulation
-- An Oscilloscope for real-time signal validation
+## Proof of Concept Development
 
+### First Proof of Concept
 
+A DC motor with a reflective element was used to simulate mosquito wing movement.
+
+**Results**
+- Successful optical event detection.
+- Detectable pulse generation.
+- Signal amplitude was relatively low.
+
+### Second Proof of Concept
+
+The optical arrangement was redesigned so the rotating element directly interrupted the UV light beam.
+
+**Results**
+- Improved pulse separation.
+- Better signal quality.
+- More realistic simulation of mosquito wing movement.
+
+---
+
+## Signal Processing Design
+
+### Low-Pass Filter
+
+**Purpose**
+- Remove the 20 kHz UV carrier signal.
+- Preserve mosquito wingbeat frequencies.
+
+**Specifications**
+- Cutoff frequency ≈ 1 kHz
+
+### Inverting Amplifier
+
+**Purpose**
+- Amplify low-level phototransistor signals.
+- Improve signal visibility for processing.
+
+### High-Pass Filter
+
+**Purpose**
+- Remove DC offset.
+- Improve signal quality.
+
+**Specifications**
+- Cutoff frequency ≈ 160 Hz
+
+### Peak Hold Circuit
+
+**Purpose**
+- Extend pulse duration.
+- Improve detection reliability.
+
+### Comparator with Hysteresis (Schmitt Trigger)
+
+**Purpose**
+- Generate clean digital pulses.
+- Improve noise immunity.
+
+**Output**
+- 0–5 V digital signal suitable for microcontroller inputs.
+
+---
+
+## UV LED Driver Circuit
+
+A 555 Timer-based pulse generator was designed to drive the UV LED.
+
+### Features
+
+- 20 kHz pulse generation
+- MOSFET-based switching stage
+- Controlled duty cycle
+- High optical pulse energy
+- Safe LED operating conditions
+
+### Validation Results
+
+- Stable pulse generation achieved
+- Approximately 40 mA RMS LED current
+- Reliable operating conditions confirmed through simulation
+
+---
+
+## Experimental Results
+
+### Observations
+
+- Wingbeat-like events were successfully detected.
+- Pulse spikes were clearly distinguishable from noise.
+- Optical sensing approach was experimentally validated.
+- Signal processing chain successfully generated digital output pulses.
+
+### Conclusion
+
+The proof-of-concept successfully demonstrated the feasibility of optical mosquito wingbeat detection using low-cost electronic components and analog signal processing techniques.
+
+---
+
+## Potential Applications
+
+- Mosquito population monitoring
+- Species behavior analysis
+- Disease vector surveillance
+- Environmental research
+- Smart mosquito trap development
+
+---
+
+## Technologies Used
+
+### Hardware
+
+- UV LED
+- Phototransistor
+- NE555 Timer
+- MOSFET Driver Circuit
+- Operational Amplifiers
+- Analog Signal Conditioning Circuits
+
+### Software & Tools
+
+- LTspice
+- Oscilloscope Measurements
+- Electronic Circuit Analysis
+
+---
+
+## Skills Demonstrated
+
+- Analog Electronics Design
+- Optical Sensing Systems
+- Signal Processing
+- Circuit Simulation
+- Hardware Validation
+- Experimental Testing
+- Engineering Documentation
+- Embedded Systems Fundamentals
+
+---
+
+## Future Improvements
+
+- Real mosquito testing and data acquisition
+- STM32-based signal processing platform
+- Automatic species classification
+- Wireless data transmission
+- Autonomous field-deployable mosquito monitoring system
+
+---
+
+## Author
+
+**SAKTHIVEL Balakumar**  
+Master's Student (Bac+5) in Embedded Systems  
+ISEP Paris, France
