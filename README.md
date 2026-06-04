@@ -35,10 +35,23 @@ UV LED Emitter
 → Digital Output
 
 ---
+## Signal Conditioning Chain
+
+The detected optical signal was processed through multiple analog stages:
+
+- Low-Pass Filter
+- Inverting Amplifier
+- High-Pass Filter
+- Peak Hold Circuit
+- Schmitt Trigger Comparator
+
+These stages improved signal quality, reduced noise, and generated a digital output suitable for future embedded system integration.
 
 ## Proof of Concept Development
 
-### First Proof of Concept
+---
+
+## Proof of Concept Development
 
 A DC motor with a reflective element was used to simulate mosquito wing movement.
 
@@ -125,10 +138,10 @@ A 555 Timer-based pulse generator was designed to drive the UV LED.
 
 ### Observations
 
-- Wingbeat-like events were successfully detected.
-- Pulse spikes were clearly distinguishable from noise.
-- Optical sensing approach was experimentally validated.
-- Signal processing chain successfully generated digital output pulses.
+- Optical interruption events were successfully detected.
+- Pulse spikes were clearly distinguishable from background noise.
+- The sensing principle was experimentally validated using a motor-based wingbeat simulation.
+- The signal processing chain successfully generated digital output pulses.
 
 ### Conclusion
 
