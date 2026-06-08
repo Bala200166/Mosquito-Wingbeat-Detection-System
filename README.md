@@ -6,202 +6,334 @@ Prototype for mosquito wingbeat detection using a pulsed UV optical sensing appr
 
 ## Project Overview
 
-Mosquitoes are vectors for diseases such as malaria, dengue fever, chikungunya, and Zika virus. This project investigates a low-cost optical sensing method for detecting mosquito wingbeat activity by measuring light interruptions caused by wing movement.
+Mosquitoes are vectors for diseases such as malaria, dengue fever, chikungunya, and Zika virus. Monitoring mosquito populations and studying their behavior can help researchers improve disease surveillance and control strategies.
 
-The objective was to validate the feasibility of detecting mosquito wingbeat frequencies using UV optical sensing, signal conditioning circuits, and digital pulse generation techniques.
+This project investigates a low-cost optical sensing method for detecting mosquito wingbeat activity. The system uses a pulsed UV LED transmitter and a phototransistor receiver. When a mosquito passes through the optical path, its wing motion modulates the received light signal, creating a characteristic frequency signature that can be detected and analyzed.
+
+The project combines optical sensing, analog electronics, signal processing, simulation, and experimental validation to demonstrate the feasibility of wingbeat-based mosquito detection.
 
 ---
 
-## Key Objectives
+## Use Cases
 
-- Develop an optical sensing system for mosquito wingbeat detection.
-- Generate a pulsed UV light source for reliable measurements.
-- Detect wingbeat-induced optical interruptions using a phototransistor.
-- Design and simulate analog signal processing circuits.
-- Convert weak sensor signals into clean digital pulses.
-- Validate the concept through hardware proof-of-concept experiments.
+- Mosquito population monitoring
+- Species behavior studies
+- Insect activity detection
+- Environmental monitoring
+- Research support for vector-borne disease prevention
+- Low-cost autonomous sensing platforms
+
+---
+
+## System Requirements
+
+The target system should:
+
+- Operate as a low-power autonomous trap
+- Attract mosquitoes into the sensing area
+- Detect the presence of a mosquito
+- Measure wingbeat activity
+- Process and store detection events
+- Allow data retrieval for scientific analysis
 
 ---
 
 ## System Architecture
 
-### Optical Detection Chain
+The detection principle is based on optical interruption and reflection.
 
-UV LED Emitter  
-→ Mosquito Wing Interruption  
-→ Phototransistor Receiver  
-→ Signal Conditioning Circuit  
-→ Comparator with Hysteresis  
-→ Digital Output
+### Main Components
 
----
-## Signal Conditioning Chain
+- UV LED transmitter
+- Phototransistor receiver
+- Signal conditioning circuitry
+- Analog filtering stages
+- Peak detection circuit
+- Schmitt trigger comparator
+- Microcontroller interface
+- Data storage and processing unit
 
-The detected optical signal was processed through multiple analog stages:
+### Detection Principle
 
-- Low-Pass Filter
-- Inverting Amplifier
-- High-Pass Filter
-- Peak Hold Circuit
-- Schmitt Trigger Comparator
-
-These stages improved signal quality, reduced noise, and generated a digital output suitable for future embedded system integration.
-
-## Proof of Concept Development
+1. The UV LED generates high-frequency optical pulses.
+2. A mosquito crossing the optical path modifies the received light signal.
+3. The phototransistor converts optical variations into electrical signals.
+4. Analog signal processing extracts wingbeat information.
+5. A comparator generates clean digital pulses.
+6. A microcontroller can measure wingbeat frequency and classify events.
 
 ---
 
-## Proof of Concept Development
+## First Proof of Concept
 
-A DC motor with a reflective element was used to simulate mosquito wing movement.
+A DC motor with a reflective element was used to simulate mosquito wing motion.
 
-**Results**
-- Successful optical event detection.
-- Detectable pulse generation.
-- Signal amplitude was relatively low.
+### Objective
 
-### Second Proof of Concept
-
-The optical arrangement was redesigned so the rotating element directly interrupted the UV light beam.
-
-**Results**
-- Improved pulse separation.
-- Better signal quality.
-- More realistic simulation of mosquito wing movement.
-
----
-
-## Signal Processing Design
-
-### Low-Pass Filter
-
-**Purpose**
-- Remove the 20 kHz UV carrier signal.
-- Preserve mosquito wingbeat frequencies.
-
-**Specifications**
-- Cutoff frequency ≈ 1 kHz
-
-### Inverting Amplifier
-
-**Purpose**
-- Amplify low-level phototransistor signals.
-- Improve signal visibility for processing.
-
-### High-Pass Filter
-
-**Purpose**
-- Remove DC offset.
-- Improve signal quality.
-
-**Specifications**
-- Cutoff frequency ≈ 160 Hz
-
-### Peak Hold Circuit
-
-**Purpose**
-- Extend pulse duration.
-- Improve detection reliability.
-
-### Comparator with Hysteresis (Schmitt Trigger)
-
-**Purpose**
-- Generate clean digital pulses.
-- Improve noise immunity.
-
-**Output**
-- 0–5 V digital signal suitable for microcontroller inputs.
-
----
-
-## UV LED Driver Circuit
-
-A 555 Timer-based pulse generator was designed to drive the UV LED.
-
-### Features
-
-- 20 kHz pulse generation
-- MOSFET-based switching stage
-- Controlled duty cycle
-- High optical pulse energy
-- Safe LED operating conditions
-
-### Validation Results
-
-- Stable pulse generation achieved
-- Approximately 40 mA RMS LED current
-- Reliable operating conditions confirmed through simulation
-
----
-
-## Experimental Results
+Validate the optical sensing concept before building a complete mosquito detection prototype.
 
 ### Observations
 
-- Optical interruption events were successfully detected.
-- Pulse spikes were clearly distinguishable from background noise.
-- The sensing principle was experimentally validated using a motor-based wingbeat simulation.
-- The signal processing chain successfully generated digital output pulses.
-
-### Conclusion
-
-The proof-of-concept successfully demonstrated the feasibility of optical mosquito wingbeat detection using low-cost electronic components and analog signal processing techniques.
+- Optical interruptions were successfully detected.
+- The UV beam was too narrow to produce significant signal variation.
+- Additional improvements were required to obtain stronger detection signals.
 
 ---
 
-## Potential Applications
+## Second Proof of Concept
 
-- Mosquito population monitoring
-- Species behavior analysis
-- Disease vector surveillance
-- Environmental research
-- Smart mosquito trap development
+A reflective interruption approach was implemented.
 
----
+### Improvements
 
-## Technologies Used
+- Better optical interruption of the light beam
+- More realistic representation of mosquito wing movement
+- Improved signal visibility
 
-### Hardware
+### Results
 
-- UV LED
-- Phototransistor
-- NE555 Timer
-- MOSFET Driver Circuit
-- Operational Amplifiers
-- Analog Signal Conditioning Circuits
-
-### Software & Tools
-
-- LTspice
-- Oscilloscope Measurements
-- Electronic Circuit Analysis
+The optical signal showed clear variations corresponding to the simulated wing motion.
 
 ---
 
-## Skills Demonstrated
+## Experimental Validation
+
+Oscilloscope measurements confirmed that:
+
+- Detection spikes were clearly distinguishable from background noise.
+- The optical sensing principle was functional.
+- Additional amplification stages were required to improve signal amplitude.
+
+---
+
+# Circuit Design
+
+## UV LED Pulse Generator
+
+A pulsed UV LED approach was selected instead of continuous illumination.
+
+### Advantages
+
+- Higher peak optical power
+- Improved signal-to-noise ratio
+- Reduced average power consumption
+- Increased sensing distance
+
+The pulse generator was implemented using a NE555 timer and a MOSFET switching stage.
+
+---
+
+## NE555 Timer Circuit
+
+The NE555 timer was configured as an astable oscillator.
+
+### Functions
+
+- Generates periodic pulses
+- Drives the UV LED switching circuit
+- Provides stable timing performance
+
+### Design Parameters
+
+- Supply Voltage: 5 V
+- Operating Frequency: 20 kHz
+- Duty Cycle: Approximately 20%
+
+---
+
+## Capacitor Charge and Discharge Analysis
+
+LTspice simulations were used to validate timer operation.
+
+### Key Observations
+
+- Capacitor voltage oscillates between threshold levels.
+- The output pulse train remains stable.
+- The diode network allows duty-cycle optimization.
+
+---
+
+## LED Current Analysis
+
+Simulation results showed:
+
+- Average LED current ≈ 19 mA
+- RMS current ≈ 40 mA
+
+These values remain within a safe operating range for the selected UV LED.
+
+---
+
+# Signal Processing Design
+
+The phototransistor output contains both the desired wingbeat information and high-frequency optical pulse components.
+
+Several analog stages were designed to isolate the useful signal.
+
+---
+
+## Low-Pass Filter
+
+### Purpose
+
+Remove the 20 kHz optical carrier generated by the UV LED pulses.
+
+### Design Parameters
+
+- Cutoff Frequency: 1 kHz
+
+### Result
+
+The filter preserves mosquito wingbeat frequencies while attenuating high-frequency optical noise.
+
+---
+
+## Inverting Amplifier
+
+### Purpose
+
+Amplify the weak phototransistor signal.
+
+### Features
+
+- High voltage gain
+- Signal inversion
+- Improved visibility of wingbeat events
+
+### Observation
+
+Large amplification factors should be implemented using multiple stages for stability.
+
+---
+
+## High-Pass Filter
+
+### Purpose
+
+Remove DC offset and slow variations.
+
+### Design Parameters
+
+- Cutoff Frequency: 160 Hz
+
+### Result
+
+The wingbeat signal becomes more distinct and easier to process.
+
+---
+
+## Peak Hold Circuit
+
+### Purpose
+
+Extend the duration of short detection pulses.
+
+### Features
+
+- Schottky diode peak detector
+- Capacitor-based charge storage
+- Controlled discharge through resistor network
+
+### Benefits
+
+- Easier microcontroller detection
+- Reduced sensitivity to pulse duration
+
+---
+
+## Schmitt Trigger Comparator
+
+### Purpose
+
+Convert the analog signal into a clean digital output.
+
+### Features
+
+- Hysteresis implementation
+- Noise immunity
+- Full-scale digital transitions
+
+### Benefits
+
+- Reliable pulse generation
+- Improved robustness
+- Easier frequency measurement using a microcontroller
+
+---
+
+# Simulation Results
+
+LTspice simulations validated:
+
+- UV pulse generation
+- LED current limits
+- Filter performance
+- Amplifier operation
+- Peak detection behavior
+- Comparator switching thresholds
+
+The complete signal chain successfully converted weak optical disturbances into clean digital pulses suitable for microcontroller processing.
+
+---
+
+# Experimental Results
+
+The prototype demonstrated:
+
+- Successful optical detection of simulated mosquito wingbeats
+- Clear signal extraction from noise
+- Effective analog conditioning
+- Reliable pulse generation
+
+The proof of concept confirms the feasibility of low-cost mosquito detection using optical sensing and analog signal processing techniques.
+
+---
+
+# Skills Demonstrated
 
 - Analog Electronics Design
 - Optical Sensing Systems
 - Signal Processing
-- Circuit Simulation
-- Hardware Validation
+- LTspice Circuit Simulation
+- Oscilloscope Measurements
+- Electronic System Validation
+- Sensor Interfacing
+- Embedded Systems Engineering
+- Hardware Prototyping
 - Experimental Testing
-- Engineering Documentation
-- Embedded Systems Fundamentals
 
 ---
 
-## Future Improvements
+# Tools Used
 
-- Real mosquito testing and data acquisition
-- Automatic species classification
+- LTspice
+- Oscilloscope
+- UV LEDs
+- Phototransistors
+- NE555 Timer
+- MOSFET Driver Circuit
+- Breadboard Prototypes
+- MATLAB (Signal Analysis)
+
+---
+
+# Future Improvements
+
+- Real mosquito testing
+- STM32-based frequency measurement
+- Species classification using wingbeat signatures
 - Wireless data transmission
-- Autonomous field-deployable mosquito monitoring system
+- Autonomous battery-powered operation
+- Machine learning-based insect identification
+- Cloud-based monitoring platform
 
 ---
 
 ## Author
 
 **SAKTHIVEL Balakumar**  
-Master's Student (Bac+5) in Embedded Systems  
+Final-year Master's Student (Bac+5) in Embedded Systems  
 ISEP Paris, France
+
+GitHub: https://github.com/Bala200166  
+LinkedIn: https://www.linkedin.com/in/balakumar-sakthivel-4aba55210
