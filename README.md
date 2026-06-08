@@ -14,6 +14,8 @@ The project combines optical sensing, analog electronics, circuit simulation, si
 
 ---
 
+This work focuses on the sensing and analog signal-conditioning stages of a mosquito detection system and serves as a proof of concept for future embedded implementation.
+
 ## Technical Areas
 
 * Analog Electronics
@@ -23,7 +25,6 @@ The project combines optical sensing, analog electronics, circuit simulation, si
 * Hardware Prototyping
 * Oscilloscope Validation
 * Sensor Interfacing
-* Electronic System Design
 
 ---
 
@@ -40,7 +41,7 @@ The project combines optical sensing, analog electronics, circuit simulation, si
 
 ## System Requirements
 
-The target system should:
+The proposed system is intended to:
 
 * Operate as a low-power autonomous trap
 * Attract mosquitoes into the sensing area
@@ -74,7 +75,7 @@ The target system should:
 3. The phototransistor converts optical variations into electrical signals.
 4. Analog signal-processing stages remove noise and amplify the useful signal.
 5. A Schmitt trigger comparator converts the conditioned analog signal into clean digital pulses.
-6. The resulting pulses can be processed by a future embedded system for wingbeat frequency measurement and classification.
+6. The resulting pulses can be processed by a future embedded system for wingbeat frequency measurement and event logging.
 
 ---
 
@@ -316,6 +317,7 @@ The proof of concept confirms the feasibility of low-cost mosquito detection usi
 * Experimental Testing
 * Sensor Interfacing
 * Circuit Design and Analysis
+* Electronic System Design
 
 ---
 
@@ -335,12 +337,12 @@ The proof of concept confirms the feasibility of low-cost mosquito detection usi
 # Future Improvements
 
 * Real mosquito testing
-* Embedded frequency measurement and event logging
+* Microcontroller-based frequency measurement and event logging
 * Improved optical geometry and sensing range
 * Wireless data transmission
 * Battery-powered autonomous operation
 * Cloud-based monitoring platform
-* Automated insect classification using wingbeat signatures
+* Potential future extension: automated insect classification using wingbeat signatures
 
 ---
 
@@ -348,10 +350,9 @@ The proof of concept confirms the feasibility of low-cost mosquito detection usi
 
 * Project report
 * Presentation slides
-* LTspice simulations
+* LTspice simulation results
 * Experimental validation images
 * Oscilloscope captures
-* Circuit schematics
 
 ---
 
